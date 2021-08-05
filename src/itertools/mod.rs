@@ -1,6 +1,9 @@
 use crate::itertools::chunked::Chunked;
 
 pub mod chunked;
+mod take_while;
+
+pub use take_while::take_while;
 
 pub trait IterExt<U: Clone>: Iterator<Item = U> + Sized {
     #[inline]

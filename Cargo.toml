@@ -9,4 +9,7 @@ edition = "2018"
 
 [features]
 itertools = []
+vectools = []
+stringtools = []
+math = []
 default = []
