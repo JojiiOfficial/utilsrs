@@ -1,6 +1,7 @@
 use crate::itertools::chunked::Chunked;
 
 pub mod chunked;
+pub mod merge;
 mod take_while;
 
 pub use take_while::take_while;
