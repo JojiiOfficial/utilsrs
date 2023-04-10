@@ -121,3 +121,21 @@ mod test {
         assert!(!contains(&a, &100, |a, b| a == b));
     }
 }
+
+/// Inserts `item` into `vec` so, that its in its sorted position.
+pub fn push_sorted<T: Ord>(vec: &mut Vec<T>, item: T) {
+    let (Ok(idx) | Err(idx)) = vec.binary_search_by(|a| a.cmp(&item));
+    vec.insert(idx, item);
+}
+
+/// Inserts `item` into `vec` so, that its in its sorted position or does nothing if T is already a part of `vec`.
+/// Returns `true` if the value was inserted.
+pub fn push_sorted_unique<T: Ord>(vec: &mut Vec<T>, item: T) -> bool {
+    let idx = vec.binary_search_by(|a| a.cmp(&item));
+    if let Err(idx) = idx {
+        vec.insert(idx, item);
+        return true;
+    }
+
+    false
+}
