@@ -6,3 +6,6 @@ pub mod math;
 pub mod stringtools;
 #[cfg(feature = "vectools")]
 pub mod vectools;
+
+#[cfg(feature = "macros")]
+pub mod macros;
