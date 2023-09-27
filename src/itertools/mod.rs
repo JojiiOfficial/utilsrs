@@ -1,3 +1,4 @@
+pub mod char_subs;
 pub mod chunked;
 pub mod merge;
 mod take_while;
