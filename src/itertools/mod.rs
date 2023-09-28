@@ -1,4 +1,3 @@
-pub mod advance;
 pub mod char_subs;
 pub mod chunked;
 pub mod merge;
@@ -24,7 +23,7 @@ pub trait IterExt<U: Clone>: Iterator<Item = U> + Sized {
 
     /// Advance iterator by `n` steps, or less if the iterator returns None before n steps have
     /// been reached.
-    fn advance(mut self, n: usize) {
+    fn advance(&mut self, n: usize) {
         for _ in 0..n {
             if self.next().is_none() {
                 break;
