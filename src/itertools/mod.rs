@@ -22,13 +22,19 @@ pub trait IterExt<U: Clone>: Iterator<Item = U> + Sized {
     }
 
     /// Advance iterator by `n` steps, or less if the iterator returns None before n steps have
-    /// been reached.
-    fn advance(&mut self, n: usize) {
+    /// been reached. Returns the actutal amount of steps the iterator made. This is different from
+    /// `n` when there are less than `n` elements left in the iterator.
+    fn advance(&mut self, n: usize) -> usize {
+        let mut c = 0;
+
         for _ in 0..n {
             if self.next().is_none() {
                 break;
             }
+            c += 1;
         }
+
+        c
     }
 }
 
