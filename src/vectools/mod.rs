@@ -107,6 +107,40 @@ where
     inp.iter().any(|i| eq(i, item))
 }
 
+// Returns `true` if `a` is a subset of `b`.
+pub fn is_subset<T: PartialOrd>(a: &[T], b: &[T]) -> bool {
+    if a.len() > b.len() {
+        return false;
+    }
+
+    let mut a_iter = a.iter();
+
+    let mut b_iter = b.iter();
+
+    loop {
+        let Some(a_val) = a_iter.next() else {
+            break;
+        };
+
+        let Some(mut b_val) = b_iter.next() else {
+            return false;
+        };
+
+        while b_val < a_val {
+            b_val = match b_iter.next() {
+                Some(b) => b,
+                None => return false,
+            };
+        }
+
+        if b_val > a_val {
+            return false;
+        }
+    }
+
+    true
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
